@@ -1,7 +1,11 @@
 console.log("Welcome to Coulette");
 
-const button = document.querySelector("button");
-const header = document.querySelector("header");
+// globale Variablen
+{
+  const generateButton = document.querySelector("#generateButton");
+  const header = document.querySelector("header");
+  const saveButton = document.querySelector("#saveButton");
+}
 
 // randomNumber: Generate random number between min and max
 function randomNumber(min, max) {
@@ -38,8 +42,34 @@ function changeBgColor() {
   body.style.backgroundColor = color;
 }
 
-// Generate color of header on click on button
-button.addEventListener("click", changeBgColor);
+function saveColor() {
+  // generate color
+  // create new list element document.createElement
+  //const li = document.body.main.ul("li");
+  //const ul = document.createElement("li");
+  //const txt = document.createTextNode("color");
+  //li.backgroundColor = color;
+  //ul.appendChild(txt);
+  // set properties for new element
+  // append new element to the list
+  console.log("works");
+  const colorValueEl = document.querySelector("#color-value");
+  console.log(colorValueEl);
+  const color = colorValueEl.innerText;
+  const colorList = document.querySelector("#colors");
+  const newColor = document.createElement("li");
+  newColor.innerText = color;
+  newColor.style.background = color;
+  colorList.appendChild(newColor);
+}
+
+// Buttons
+{
+  // Generate color of header on click on button
+  generateButton.addEventListener("click", changeBgColor);
+  // Generate
+  saveButton.addEventListener("click", saveColor);
+}
 
 // Generate initial color
 changeBgColor();
