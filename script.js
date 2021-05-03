@@ -51,6 +51,7 @@ function changeBgColor() {
 
 function saveColor() {
   // generate color
+  // new comment
   // set properties for new element
   // append new element to the list
   //const colorValueEl = document.querySelector("#color-value");
