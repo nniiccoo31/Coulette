@@ -50,23 +50,23 @@ function changeBgColor() {
 }
 
 function saveColor() {
-  // generate color
-  // set properties for new element
-  // append new element to the list
-  //const colorValueEl = document.querySelector("#color-value");
-  //const color = colorValueEl.innerText;
   const colorList = document.querySelector("#colors");
   const newColorElement = document.createElement("li");
   newColorElement.innerText = currentColor;
   newColorElement.style.background = currentColor;
+  const deleteButton = document.createElement("Button"); // Create a <button> element
+  deleteButton.innerHTML = "Delete Color"; // Insert text
 
   if (!colors.includes(currentColor)) {
     colors.push(currentColor);
 
     colorList.appendChild(newColorElement);
+    newColorElement.setAttribute("data-color", currentColor);
+    newColorElement.appendChild(deleteButton); // Delete Button
 
     updateSaveButtonStatus();
   }
+  deleteButton.addEventListener("click", deleteColor);
 }
 
 // Disable save Button
@@ -78,13 +78,26 @@ function updateSaveButtonStatus() {
   }
 }
 
-// Button Events
-{
-  // Generate color of header on click on button
-  generateButton.addEventListener("click", changeBgColor);
-  // Generate
-  saveButton.addEventListener("click", saveColor);
+// Function to delete color list item
+function deleteColor(clickEvent) {
+  const colorLiElement = clickEvent.target.parentElement;
+
+  // Get color
+  let colorValue = colorLiElement.getAttribute("data-color");
+  //let deleteColorIndex = colors.indexOf(colorValue);
+  colors.splice(colorValue, 1);
+
+  // Delete Element
+  colorLiElement.remove();
+  console.log(colors);
 }
+
+// Button Events
+
+// Generate color of header on click on button
+generateButton.addEventListener("click", changeBgColor);
+// Save color in list on click on button
+saveButton.addEventListener("click", saveColor);
 
 // Generate initial color
 changeBgColor();
